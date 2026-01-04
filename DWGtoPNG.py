@@ -17,7 +17,9 @@ def get_default_oda_path():
     """Detects OS and returns standard ODA installation path."""
     current_os = platform.system()
     if current_os == "Windows":
-        # Check specific version (Update this if you upgrade ODA)
+        ''' 
+        ❗❗❗MAKE SURE YOU PUT THE CORRECT PATH HERE❗❗❗
+        '''
         return r"C:\Program Files\ODA\ODAFileConverter\ODAFileConverter.exe"
     elif current_os == "Linux":
         return "/usr/bin/ODAFileConverter"
