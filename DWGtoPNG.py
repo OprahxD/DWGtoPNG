@@ -17,9 +17,7 @@ def get_default_oda_path():
     """Detects OS and returns standard ODA installation path."""
     current_os = platform.system()
     if current_os == "Windows":
-        ''' 
-        ❗❗❗MAKE SURE YOU PUT THE CORRECT PATH HERE❗❗❗
-        '''
+        # Check specific version (Update this if you upgrade ODA)
         return r"C:\Program Files\ODA\ODAFileConverter\ODAFileConverter.exe"
     elif current_os == "Linux":
         return "/usr/bin/ODAFileConverter"
@@ -30,7 +28,7 @@ def get_default_oda_path():
 ODA_PATH = get_default_oda_path()
 # OUTPUT_DPI = 600  # Higher DPI = "High Res Screenshot"
 
-def convert_dwg_to_png(dwg_path,output_path, OUTPUT_DPI):
+def convert_dwg_to_png(dwg_path, OUTPUT_DPI):
     
 
     
@@ -39,8 +37,8 @@ def convert_dwg_to_png(dwg_path,output_path, OUTPUT_DPI):
     filename_no_ext = os.path.splitext(filename)[0]
     
     # Define Output Path (Same folder as input, same name, .png extension)
-    # output_png_path = os.path.join(base_dir, f"{filename_no_ext}.png")
-    output_png_path = output_path
+    output_png_path = os.path.join(base_dir, f"{filename_no_ext}.png")
+    # output_png_path = output_path
     
     temp_dir = os.path.join(base_dir, "temp_render")
     
