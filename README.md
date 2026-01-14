@@ -9,21 +9,17 @@ $ which ODAFileConverter
 
 
 
+
 import matplotlib
 matplotlib.use('Agg') 
 
 import os
 import matplotlib.pyplot as plt 
 from DWGtoPNG import convert_dwg_to_png
-from DWGtoPNG import batch_convert_folder
-
 
 
 if __name__ == "__main__":
-    # Change to the correct input and output folders with dwg files:
-    source_folder = r"C:\Users\input_data"
-    output_folder = r"C:\Users\output_data"
-    # The last input is the DPI - Higher the number, clearer the PNG
-    batch_convert_folder(source_folder,output_folder,300)
-    print("Starting batch conversion")
+    source_file = r"C:\Users\shres\OneDrive\Desktop\Python\dwgToPng\input_data\input2.dwg"
+    DPI = 300
+    convert_dwg_to_png(source_file,DPI)
     
