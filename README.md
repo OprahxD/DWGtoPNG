@@ -1,14 +1,15 @@
-Copy the following code and paste in the file you want to use, also make sure you have the correct imports at too.
+Copy the following code and paste in the file you want to use, also make sure you have the correct imports at too, they are available in the requirements.txt file.
 You will also need ODA converter and remember it's path as you will have to put it in the module.
-Type this to install ODA converter:
-$ sudo dpkg -i ODAFileConverter_25.12.0.0_Linux_x86_64.deb
-Then this to get the file path
-$ which ODAFileConverter
+Go to this website and download the ODAFileConverter file:
+https://www.opendesign.com/guestfiles/oda_file_converter
+Then run:
+sudo gdebi ODAFileConverter_QT6_lnxX64_8.3dll_26.10.deb
+Then this to get the file path:
+which ODAFileConverter
+Put the file path in the DWGtoPNG module.
 
 
-
-
-
+Use this code to run:
 
 import matplotlib
 matplotlib.use('Agg') 
