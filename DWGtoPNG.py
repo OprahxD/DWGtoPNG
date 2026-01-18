@@ -20,7 +20,7 @@ def get_default_oda_path():
         # Check specific version (Update this if you upgrade ODA)
         return r"C:\Program Files\ODA\ODAFileConverter\ODAFileConverter.exe"
     elif current_os == "Linux":
-        return "/usr/bin/ODAFileConverter"
+        return r'/usr/bin/ODAFileConverter'
     elif current_os == "Darwin":
         return "/Applications/ODAFileConverter.app/Contents/MacOS/ODAFileConverter"
     return None
@@ -60,9 +60,23 @@ def convert_dwg_to_png(dwg_path, OUTPUT_DPI):
         "0", "0"        # Recurse, Audit
     ]
 
-    startupinfo = subprocess.STARTUPINFO()
-    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-    startupinfo.wShowWindow = subprocess.SW_HIDE
+    # 1. Initialize as None (Safe for Linux/Mac)
+    startupinfo = None
+        
+        # 2. Only add Windows-specific flags IF we are on Windows
+    if platform.system() == "Windows":
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            startupinfo.wShowWindow = subprocess.SW_HIDE
+
+        # 3. Run the command
+        # Passing 'startupinfo=None' on Linux is perfectly fine and safe.
+    subprocess.run(
+            oda_cmd, 
+            stdout=subprocess.DEVNULL, 
+            stderr=subprocess.DEVNULL,
+            startupinfo=startupinfo
+        )
 
 # 3. Run with the hidden flag
     subprocess.run(
@@ -177,6 +191,3 @@ def batch_convert_folder(source_folder, output_folder, dpi=300):
     print(f"✅ Successful: {success_count}")
     print(f"❌ Failed:     {total_files - success_count}")
     print(f"⏱️ Time Taken: {elapsed:.2f} seconds")
-
-
-
